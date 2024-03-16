@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: ecom-web
+        tier: frontend
+    spec:
+      containers:
+      - image: briangaber/ecom-web:v1
+        name: ecom-web
+        ports:
+        - containerPort: 80
+        env:
+        - name: DB_HOST
+          value: "mysql-service"
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: mariadb-config
+              key: mysql_user
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-secret
+              key: mysql_password
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: mariadb-config
+              key: mysql_db
+        - name: FEATURE_DARK_MODE
+          valueFrom:
+            configMapKeyRef:
+              name: feature-toggle
+              key: FEATURE_DARK_MODE

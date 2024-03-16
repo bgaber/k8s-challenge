@@ -1,0 +1,15 @@
+FROM mariadb:latest
+
+COPY ./db-load-script.sql /docker-entrypoint-initdb.d/
+
+RUN apt-get update
+
+ENV MYSQL_ROOT_PASSWORD mypass
+ENV MYSQL_DATABASE ecomdb
+
+#RUN mariadb -u root -pmypass -e "create database ecomdb";
+#RUN mariadb -u root -pmypass -e "CREATE USER 'ecomuser'@'localhost' IDENTIFIED BY 'ecompassword'";
+#RUN mariadb -u root -pmypass -e "GRANT ALL PRIVILEGES ON *.* TO 'ecomuser'@'localhost'";
+#RUN mariadb -u root -pmypass -e "FLUSH PRIVILEGES";
+
+EXPOSE 3306

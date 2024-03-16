@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: ecom-web
+    tier: backend
+  name: ecom-db
+spec:
+  containers:
+  - image: mariadb
+    name: ecom-db
+    ports:
+    - containerPort: 3306
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: mariadb-secret
+          key: mysql_root_password
+    - name: MYSQL_DATABASE
+      valueFrom:
+        configMapKeyRef:
+          name: mariadb-config
+          key: mysql_db
+    - name: MYSQL_USER
+      valueFrom:
+        configMapKeyRef:
+          name: mariadb-config
+          key: mysql_user
+    - name: MYSQL_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: mariadb-secret
+          key: mysql_password
+    volumeMounts:
+      - name: mariadb-initdb
+        mountPath: /docker-entrypoint-initdb.d
+  volumes:
+  - name: mariadb-initdb
+    configMap:
+      name: initdb
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: initdb
+data:
+  initdb.sql: |-
+    USE ecomdb;
+    CREATE TABLE products (id mediumint(8) unsigned NOT NULL auto_increment,Name varchar(255) default NULL,Price varchar(255) default NULL, ImageUrl varchar(255) default NULL,PRIMARY KEY (id)) AUTO_INCREMENT=1;
+    INSERT INTO products (Name,Price,ImageUrl) VALUES ("Laptop","100","c-1.png"),("Drone","200","c-2.png"),("VR","300","c-3.png"),("Tablet","50","c-5.png"),("Watch","90","c-6.png"),("Phone Covers","20","c-7.png"),("Phone","80","c-8.png"),("Laptop","150","c-4.png");
