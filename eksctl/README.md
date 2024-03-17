@@ -39,7 +39,7 @@ sudo mv /tmp/eksctl /usr/local/bin
 eksctl version
 ```
 
-[Install helm](https://helm.sh/docs/intro/install/) Helm is a Kubernetes deployment tool for automating creation, packaging, configuration, and deployment of applications and services to Kubernetes clusters.
+[Install helm](https://helm.sh/docs/intro/install/) Helm is a Kubernetes deployment tool for automating creation, packaging, configuration, and deployment of applications and services to Kubernetes clusters.  In these instructions Helm will be used for the AWS Load Balancer Controller installation.
 
 ```
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
