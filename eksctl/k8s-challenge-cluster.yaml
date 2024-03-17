@@ -1,0 +1,42 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: k8s-challenge
+  region: us-east-1
+  version: "1.29"
+managedNodeGroups:
+- amiFamily: AmazonLinux2
+  desiredCapacity: 2
+  iam:
+    withAddonPolicies:
+      ebs: true
+      awsLoadBalancerController: true
+      cloudWatch: true
+  instanceType: t3a.xlarge
+  labels:
+    alpha.eksctl.io/cluster-name: k8s-challenge
+    alpha.eksctl.io/nodegroup-name: standard-workers
+  maxSize: 3
+  minSize: 1
+  name: k8s-challenge-std-workers
+  privateNetworking: false
+  tags:
+    alpha.eksctl.io/nodegroup-name: standard-workers
+    alpha.eksctl.io/nodegroup-type: managed
+vpc:
+  id: vpc-f069ee94
+  manageSharedNodeSecurityGroupRules: true
+  nat:
+    gateway: Disable
+  subnets:
+    public:
+      us-east-1a:
+        id: subnet-817978aa
+      us-east-1b:
+        id: subnet-3cc8344a
+      us-east-1c:
+        id: subnet-a8abbcf1
+      us-east-1d:
+        id: subnet-f4aa3191
+      us-east-1f:
+        id: subnet-80f87c8c
