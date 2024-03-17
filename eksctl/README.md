@@ -8,7 +8,7 @@ Create IAM user with Programmatic access only and attach the AdministratorAccess
 
 ### Install Required Software
 
-***Install the AWS CLI version 2***
+[Install the AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
 ```
 $ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -22,7 +22,7 @@ Configure the AWS CLI using the Access Key ID and Secret Access Key.
 aws configure
 ```
 
-***Install kubectl***
+[Install kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html)
 
 ```
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.29.0/2024-01-04/bin/linux/amd64/kubectl
@@ -31,7 +31,7 @@ sudo mv kubectl /usr/local/bin
 kubectl version
 ```
 
-***Install eksctl***
+[Install eksctl](https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/setting-up-eksctl.html)
 
 ```
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
@@ -39,7 +39,7 @@ sudo mv /tmp/eksctl /usr/local/bin
 eksctl version
 ```
 
-***Install helm*** Helm is a Kubernetes deployment tool for automating creation, packaging, configuration, and deployment of applications and services to Kubernetes clusters.
+[Install helm](https://helm.sh/docs/intro/install/) Helm is a Kubernetes deployment tool for automating creation, packaging, configuration, and deployment of applications and services to Kubernetes clusters.
 
 ```
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -51,7 +51,7 @@ helm version
 
 ## Create EKS Cluster
 
-There are many options for creating an EKS cluster using eksctl. It can be created using a k8s manifest file or from the command line. From the CLI there are also many options as shown by running the `eksctl create cluster --help` command. I will just show two variations: one that creates a new VPC and required components (subnets, etc) and one that uses an existing VPC and subnets.
+There are many options for creating an EKS cluster using eksctl as shown in [this document](https://eksctl.io/usage/schema/). It can be created using a k8s manifest file or from the command line. From the CLI there are also many options as shown by running the `eksctl create cluster --help` command. I will just show two variations: one that creates a new VPC and required components (subnets, etc) and one that uses an existing VPC and subnets.
 
 ### Deploy Cluster To New VPC From CLI
 
@@ -125,41 +125,41 @@ eksctl create cluster -f k8s-challenge.yaml
 You can monitor the build from CloudFormation in the AWS Console. As well you will see output to the eksctl command similar to the following:
 
 ```
-2024-03-13 09:13:24 [ℹ]  eksctl version 0.173.0
-2024-03-13 09:13:24 [ℹ]  using region us-east-1
-2024-03-13 09:13:24 [✔]  using existing VPC (vpc-87e65ae0) and subnets (private:map[us-east-1b:{subnet-2a590000 us-east-1b 10.251.36.0/22 0} us-east-1c:{subnet-63696015 us-east-1c 10.251.40.0/22 0}] public:map[us-east-1b:{subnet-42267f68 us-east-1b 10.251.32.0/23 0} us-east-1c:{subnet-c2565fb4 us-east-1c 10.251.34.0/23 0}])
-2024-03-13 09:13:24 [!]  custom VPC/subnets will be used; if resulting cluster doesn\'t function as expected, make sure to review the configuration of VPC/subnets
-2024-03-13 09:13:24 [ℹ]  nodegroup "standard-workers" will use "" [AmazonLinux2/1.29]
-2024-03-13 09:13:24 [ℹ]  using Kubernetes version 1.29
-2024-03-13 09:13:24 [ℹ]  creating EKS cluster "k8s-challenge" in "us-east-1" region with managed nodes
-2024-03-13 09:13:24 [ℹ]  1 nodegroup (standard-workers) was included (based on the include/exclude rules)
-2024-03-13 09:13:24 [ℹ]  will create a CloudFormation stack for cluster itself and 0 nodegroup stack(s)
-2024-03-13 09:13:24 [ℹ]  will create a CloudFormation stack for cluster itself and 1 managed nodegroup stack(s)
-2024-03-13 09:13:24 [ℹ]  if you encounter any issues, check CloudFormation console or try \'eksctl utils describe-stacks --region=us-east-1 --cluster=k8s-challenge\'
-2024-03-13 09:13:24 [ℹ]  Kubernetes API endpoint access will use default of {publicAccess=true, privateAccess=false} for cluster "k8s-challenge" in "us-east-1"
-2024-03-13 09:13:24 [ℹ]  CloudWatch logging will not be enabled for cluster "k8s-challenge" in "us-east-1"
-2024-03-13 09:13:24 [ℹ]  you can enable it with \'eksctl utils update-cluster-logging --enable-types={SPECIFY-YOUR-LOG-TYPES-HERE (e.g. all)} --region=us-east-1 --cluster=k8s-challenge\'
-2024-03-13 09:13:24 [ℹ]
+2024-03-13 18:43:24 [ℹ]  eksctl version 0.173.0
+2024-03-13 18:43:24 [ℹ]  using region us-east-1
+2024-03-13 18:43:24 [✔]  using existing VPC (vpc-87e65ae0) and subnets (private:map[us-east-1b:{subnet-2a590000 us-east-1b 10.251.36.0/22 0} us-east-1c:{subnet-63696015 us-east-1c 10.251.40.0/22 0}] public:map[us-east-1b:{subnet-42267f68 us-east-1b 10.251.32.0/23 0} us-east-1c:{subnet-c2565fb4 us-east-1c 10.251.34.0/23 0}])
+2024-03-13 18:43:24 [!]  custom VPC/subnets will be used; if resulting cluster doesn\'t function as expected, make sure to review the configuration of VPC/subnets
+2024-03-13 18:43:24 [ℹ]  nodegroup "standard-workers" will use "" [AmazonLinux2/1.29]
+2024-03-13 18:43:24 [ℹ]  using Kubernetes version 1.29
+2024-03-13 18:43:24 [ℹ]  creating EKS cluster "k8s-challenge" in "us-east-1" region with managed nodes
+2024-03-13 18:43:24 [ℹ]  1 nodegroup (standard-workers) was included (based on the include/exclude rules)
+2024-03-13 18:43:24 [ℹ]  will create a CloudFormation stack for cluster itself and 0 nodegroup stack(s)
+2024-03-13 18:43:24 [ℹ]  will create a CloudFormation stack for cluster itself and 1 managed nodegroup stack(s)
+2024-03-13 18:43:24 [ℹ]  if you encounter any issues, check CloudFormation console or try \'eksctl utils describe-stacks --region=us-east-1 --cluster=k8s-challenge\'
+2024-03-13 18:43:24 [ℹ]  Kubernetes API endpoint access will use default of {publicAccess=true, privateAccess=false} for cluster "k8s-challenge" in "us-east-1"
+2024-03-13 18:43:24 [ℹ]  CloudWatch logging will not be enabled for cluster "k8s-challenge" in "us-east-1"
+2024-03-13 18:43:24 [ℹ]  you can enable it with \'eksctl utils update-cluster-logging --enable-types={SPECIFY-YOUR-LOG-TYPES-HERE (e.g. all)} --region=us-east-1 --cluster=k8s-challenge\'
+2024-03-13 18:43:24 [ℹ]
 2 sequential tasks: { create cluster control plane "k8s-challenge",
     2 sequential sub-tasks: {
         wait for control plane to become ready,
         create managed nodegroup "standard-workers",
     }
 }
-2024-03-13 09:13:24 [ℹ]  building cluster stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:13:25 [ℹ]  deploying stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:13:55 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:14:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:15:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:16:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:17:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:18:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:19:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:20:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:21:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:22:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:23:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2024-03-13 09:24:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:43:24 [ℹ]  building cluster stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:43:25 [ℹ]  deploying stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:43:55 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:44:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:45:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:46:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:47:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:48:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:49:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:50:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:51:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:52:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:53:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:54:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
 2024-03-13 18:54:40 [ℹ]  building managed nodegroup stack "eksctl-k8s-challenge-nodegroup-k8s-challenge-std-workers"
 2024-03-13 18:54:40 [ℹ]  deploying stack "eksctl-k8s-challenge-nodegroup-k8s-challenge-std-workers"
 2024-03-13 18:54:40 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-nodegroup-k8s-challenge-std-workers"
@@ -205,13 +205,18 @@ Notice the command this time is `eksctl create nodegroup` and not `eksctl create
 
 The Amazon Elastic Block Store (Amazon EBS) Container Storage Interface (CSI) driver manages the lifecycle of Amazon EBS volumes as storage for the Kubernetes Volumes that you create. The Amazon EBS CSI driver makes Amazon EBS volumes for these types of Kubernetes volumes: *generic ephemeral volumes and persistent volumes*
 
-***Install the CSI Storage add-on***
+[Install the CSI Storage add-on](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html)
 
 ### AWS CNI Network Add-on
 
+The Amazon VPC CNI plugin for Kubernetes is the networking plugin for Pod networking in Amazon EKS clusters. The plugin is responsible for allocating VPC IP addresses to Kubernetes nodes and configuring the necessary networking for Pods on each node.
+
+[Install the CNI Storage add-on](https://docs.aws.amazon.com/eks/latest/userguide/managing-vpc-cni.html)
+[Create the Amazon VPC CNI plugin for Kubernetes IAM role](https://docs.aws.amazon.com/eks/latest/userguide/cni-iam-role.html)
+
 ### AWS Load Balancer Controller Add-on
 
-The AWS Load Balancer Controller requires subnets with specific tags. ***Read this document for information on the subnet tags***
+The AWS Load Balancer Controller requires subnets with specific tags. [Read this document for information on the subnet tags](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/deploy/subnet_discovery/)
 
 Public subnets are used for internet-facing load balancers. These subnets must have the following tags:
 
@@ -225,7 +230,7 @@ Private subnets are used for internal load balancers. These subnets must have th
 kubernetes.io/role/internal-elb	1 or ``
 ```
 
-In order to use an ALB, referred to as an Ingress in Kubernetes, you must first install the AWS Load Balancer Controller add-on following ***these AWS instructions.***
+In order to use an ALB, referred to as an Ingress in Kubernetes, you must first install the AWS Load Balancer Controller add-on following [these AWS instructions](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html).
 
 Ensure you create the AmazonEKSLoadBalancerControllerRole IAM Role described in Steps 1 and 2.
 
