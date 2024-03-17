@@ -25,7 +25,7 @@ aws configure
 #### <u>Install kubectl</u>
 
 ```
-curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.25.15/2023-11-02/bin/linux/amd64/kubectl
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.29.0/2024-01-04/bin/linux/amd64/kubectl
 sudo chmod +x ./kubectl
 sudo mv kubectl /usr/local/bin
 kubectl version
@@ -66,7 +66,7 @@ eksctl create cluster --name k8s-challenge --version 1.29 --region us-east-1 --z
 The following command creates a new EKS cluster in an existing VPC and subnets with the worker nodes only having private IP addresses:
 
 ```
-eksctl create cluster --name k8s-challenge --version 1.25 --region us-east-1 --vpc-public-subnets=subnet-42267f68,subnet-c2565fb4 --vpc-private-subnets=subnet-2a590000,subnet-63696015 --nodegroup-name standard-workers --node-type t3a.xlarge --nodes 2 --nodes-min 1 --nodes-max 4 --node-private-networking --managed
+eksctl create cluster --name k8s-challenge --version 1.29 --region us-east-1 --vpc-public-subnets=subnet-42267f68,subnet-c2565fb4 --vpc-private-subnets=subnet-2a590000,subnet-63696015 --nodegroup-name standard-workers --node-type t3a.xlarge --nodes 2 --nodes-min 1 --nodes-max 4 --node-private-networking --managed
 ```
 
 ### Deploy Cluster To Existing VPC With eskctl Manifest
@@ -125,61 +125,60 @@ eksctl create cluster -f k8s-challenge.yaml
 You can monitor the build from CloudFormation in the AWS Console. As well you will see output to the eksctl command similar to the following:
 
 ```
-2022-05-30 09:13:24 [ℹ]  eksctl version 0.99.0
-2022-05-30 09:13:24 [ℹ]  using region us-east-1
-2022-05-30 09:13:24 [✔]  using existing VPC (vpc-87e65ae0) and subnets (private:map[us-east-1b:{subnet-2a590000 us-east-1b 10.251.36.0/22 0} us-east-1c:{subnet-63696015 us-east-1c 10.251.40.0/22 0}] public:map[us-east-1b:{subnet-42267f68 us-east-1b 10.251.32.0/23 0} us-east-1c:{subnet-c2565fb4 us-east-1c 10.251.34.0/23 0}])
-2022-05-30 09:13:24 [!]  custom VPC/subnets will be used; if resulting cluster doesn\'t function as expected, make sure to review the configuration of VPC/subnets
-2022-05-30 09:13:24 [ℹ]  nodegroup "standard-workers" will use "" [AmazonLinux2/1.25]
-2022-05-30 09:13:24 [ℹ]  using Kubernetes version 1.25
-2022-05-30 09:13:24 [ℹ]  creating EKS cluster "k8s-challenge" in "us-east-1" region with managed nodes
-2022-05-30 09:13:24 [ℹ]  1 nodegroup (standard-workers) was included (based on the include/exclude rules)
-2022-05-30 09:13:24 [ℹ]  will create a CloudFormation stack for cluster itself and 0 nodegroup stack(s)
-2022-05-30 09:13:24 [ℹ]  will create a CloudFormation stack for cluster itself and 1 managed nodegroup stack(s)
-2022-05-30 09:13:24 [ℹ]  if you encounter any issues, check CloudFormation console or try \'eksctl utils describe-stacks --region=us-east-1 --cluster=k8s-challenge\'
-2022-05-30 09:13:24 [ℹ]  Kubernetes API endpoint access will use default of {publicAccess=true, privateAccess=false} for cluster "k8s-challenge" in "us-east-1"
-2022-05-30 09:13:24 [ℹ]  CloudWatch logging will not be enabled for cluster "k8s-challenge" in "us-east-1"
-2022-05-30 09:13:24 [ℹ]  you can enable it with \'eksctl utils update-cluster-logging --enable-types={SPECIFY-YOUR-LOG-TYPES-HERE (e.g. all)} --region=us-east-1 --cluster=k8s-challenge\'
-2022-05-30 09:13:24 [ℹ]
+2024-03-13 09:13:24 [ℹ]  eksctl version 0.173.0
+2024-03-13 09:13:24 [ℹ]  using region us-east-1
+2024-03-13 09:13:24 [✔]  using existing VPC (vpc-87e65ae0) and subnets (private:map[us-east-1b:{subnet-2a590000 us-east-1b 10.251.36.0/22 0} us-east-1c:{subnet-63696015 us-east-1c 10.251.40.0/22 0}] public:map[us-east-1b:{subnet-42267f68 us-east-1b 10.251.32.0/23 0} us-east-1c:{subnet-c2565fb4 us-east-1c 10.251.34.0/23 0}])
+2024-03-13 09:13:24 [!]  custom VPC/subnets will be used; if resulting cluster doesn\'t function as expected, make sure to review the configuration of VPC/subnets
+2024-03-13 09:13:24 [ℹ]  nodegroup "standard-workers" will use "" [AmazonLinux2/1.29]
+2024-03-13 09:13:24 [ℹ]  using Kubernetes version 1.29
+2024-03-13 09:13:24 [ℹ]  creating EKS cluster "k8s-challenge" in "us-east-1" region with managed nodes
+2024-03-13 09:13:24 [ℹ]  1 nodegroup (standard-workers) was included (based on the include/exclude rules)
+2024-03-13 09:13:24 [ℹ]  will create a CloudFormation stack for cluster itself and 0 nodegroup stack(s)
+2024-03-13 09:13:24 [ℹ]  will create a CloudFormation stack for cluster itself and 1 managed nodegroup stack(s)
+2024-03-13 09:13:24 [ℹ]  if you encounter any issues, check CloudFormation console or try \'eksctl utils describe-stacks --region=us-east-1 --cluster=k8s-challenge\'
+2024-03-13 09:13:24 [ℹ]  Kubernetes API endpoint access will use default of {publicAccess=true, privateAccess=false} for cluster "k8s-challenge" in "us-east-1"
+2024-03-13 09:13:24 [ℹ]  CloudWatch logging will not be enabled for cluster "k8s-challenge" in "us-east-1"
+2024-03-13 09:13:24 [ℹ]  you can enable it with \'eksctl utils update-cluster-logging --enable-types={SPECIFY-YOUR-LOG-TYPES-HERE (e.g. all)} --region=us-east-1 --cluster=k8s-challenge\'
+2024-03-13 09:13:24 [ℹ]
 2 sequential tasks: { create cluster control plane "k8s-challenge",
     2 sequential sub-tasks: {
         wait for control plane to become ready,
         create managed nodegroup "standard-workers",
     }
 }
-2022-05-30 09:13:24 [ℹ]  building cluster stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:13:25 [ℹ]  deploying stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:13:55 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:14:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:15:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:16:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:17:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:18:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:19:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:20:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:21:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:22:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:23:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:24:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
-2022-05-30 09:26:26 [ℹ]  building managed nodegroup stack "eksctl-k8s-challenge-nodegroup-standard-workers"
-2022-05-30 09:26:26 [ℹ]  deploying stack "eksctl-k8s-challenge-nodegroup-standard-workers"
-2022-05-30 09:26:26 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-nodegroup-standard-workers"
-2022-05-30 09:26:56 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-nodegroup-standard-workers"
-2022-05-30 09:27:28 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-nodegroup-standard-workers"
-2022-05-30 09:28:07 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-nodegroup-standard-workers"
-2022-05-30 09:29:46 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-nodegroup-standard-workers"
-2022-05-30 09:29:46 [ℹ]  waiting for the control plane availability...
-2022-05-30 09:29:46 [✔]  saved kubeconfig as "/home/awsadmin/bg216063/.kube/config"
-2022-05-30 09:29:46 [ℹ]  no tasks
-2022-05-30 09:29:46 [✔]  all EKS cluster resources for "k8s-challenge" have been created
-2022-05-30 09:29:46 [ℹ]  nodegroup "standard-workers" has 2 node(s)
-2022-05-30 09:29:46 [ℹ]  node "ip-10-251-39-154.ec2.internal" is ready
-2022-05-30 09:29:46 [ℹ]  node "ip-10-251-41-159.ec2.internal" is ready
-2022-05-30 09:29:46 [ℹ]  waiting for at least 1 node(s) to become ready in "standard-workers"
-2022-05-30 09:29:46 [ℹ]  nodegroup "standard-workers" has 2 node(s)
-2022-05-30 09:29:46 [ℹ]  node "ip-10-251-39-154.ec2.internal" is ready
-2022-05-30 09:29:46 [ℹ]  node "ip-10-251-41-159.ec2.internal" is ready
-2022-05-30 09:29:49 [ℹ]  kubectl command should work with "/home/awsadmin/bg216063/.kube/config", try \'kubectl get nodes\'
-2022-05-30 09:29:49 [✔]  EKS cluster "k8s-challenge" in "us-east-1" region is ready
+2024-03-13 09:13:24 [ℹ]  building cluster stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:13:25 [ℹ]  deploying stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:13:55 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:14:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:15:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:16:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:17:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:18:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:19:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:20:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:21:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:22:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:23:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 09:24:25 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-cluster"
+2024-03-13 18:54:40 [ℹ]  building managed nodegroup stack "eksctl-k8s-challenge-nodegroup-k8s-challenge-std-workers"
+2024-03-13 18:54:40 [ℹ]  deploying stack "eksctl-k8s-challenge-nodegroup-k8s-challenge-std-workers"
+2024-03-13 18:54:40 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-nodegroup-k8s-challenge-std-workers"
+2024-03-13 18:55:10 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-nodegroup-k8s-challenge-std-workers"
+2024-03-13 18:56:05 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-nodegroup-k8s-challenge-std-workers"
+2024-03-13 18:57:52 [ℹ]  waiting for CloudFormation stack "eksctl-k8s-challenge-nodegroup-k8s-challenge-std-workers"
+2024-03-13 18:57:52 [ℹ]  waiting for the control plane to become ready
+2024-03-13 18:57:52 [✔]  saved kubeconfig as "/home/ec2-user/.kube/config"
+2024-03-13 18:57:52 [ℹ]  no tasks
+2024-03-13 18:57:52 [✔]  all EKS cluster resources for "k8s-challenge" have been created
+2024-03-13 18:57:52 [ℹ]  nodegroup "k8s-challenge-std-workers" has 2 node(s)
+2024-03-13 18:57:52 [ℹ]  node "ip-172-31-21-100.ec2.internal" is ready
+2024-03-13 18:57:52 [ℹ]  node "ip-172-31-54-80.ec2.internal" is ready
+2024-03-13 18:57:52 [ℹ]  waiting for at least 1 node(s) to become ready in "k8s-challenge-std-workers"
+2024-03-13 18:57:52 [ℹ]  nodegroup "k8s-challenge-std-workers" has 2 node(s)
+2024-03-13 18:57:52 [ℹ]  node "ip-172-31-21-100.ec2.internal" is ready
+2024-03-13 18:57:52 [ℹ]  node "ip-172-31-54-80.ec2.internal" is ready
+2024-03-13 18:57:53 [ℹ]  kubectl command should work with "/home/ec2-user/.kube/config", try 'kubectl get nodes'
+2024-03-13 18:57:53 [✔]  EKS cluster "k8s-challenge" in "us-east-1" region is ready
 ```
 
 ### Only Deploy Nodegroup With eskctl Manifest
@@ -190,8 +189,8 @@ In the first case, to change one of the Nodegroup parameters, you first have to 
 
 ```
 eksctl get nodegroup --cluster k8s-challenge
-CLUSTER         NODEGROUP               STATUS  CREATED                 MIN SIZE        MAX SIZE        DESIRED CAPACITY        INSTANCE TYPE   IMAGE ID        ASG NAME                                                        TYPE
-k8s-challenge   standard-workers        ACTIVE  2022-05-30T13:26:53Z    1               4               2                       t3a.xlarge      AL2_x86_64      eks-standard-workers-a2c08a92-eda6-425e-048c-d1b5f786301c       managed
+CLUSTER         NODEGROUP                       STATUS  CREATED                 MIN SIZE        MAX SIZE        DESIRED CAPACITY        INSTANCE TYPE   IMAGE ID        ASG NAME                 TYPE
+k8s-challenge   k8s-challenge-std-workers       ACTIVE  2024-03-13T18:55:05Z    1               3               2                       t3a.xlarge      AL2_x86_64      eks-k8s-challenge-std-workers-52c71c95-816c-abb4-25ca-89a142391d31        managed
 ```
 
 ```
@@ -240,7 +239,6 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   --set clusterName=k8s-challenge \
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller \
-  --set image.repository=602401143452.dkr.ecr.us-east-2.amazonaws.com/amazon/aws-load-balancer-controller
 ```
 
 As shown in step 6 of the AWS instructions, I confirmed the deployment with this command:
