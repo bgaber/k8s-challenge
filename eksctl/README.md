@@ -51,7 +51,7 @@ helm version
 
 ## Create EKS Cluster
 
-There are many options for creating an EKS cluster using eksctl. It can be created using a k8s manifest file or from the command line. From the CLI there are also many options as shown by running the eksctl create cluster --help command. I will just show two variations: one that creates a new VPC and required components (subnets, etc) and one that uses an existing VPC and subnets.
+There are many options for creating an EKS cluster using eksctl. It can be created using a k8s manifest file or from the command line. From the CLI there are also many options as shown by running the `eksctl create cluster --help` command. I will just show two variations: one that creates a new VPC and required components (subnets, etc) and one that uses an existing VPC and subnets.
 
 ### Deploy Cluster To New VPC From CLI
 
@@ -183,9 +183,9 @@ You can monitor the build from CloudFormation in the AWS Console. As well you wi
 
 ### Only Deploy Nodegroup With eskctl Manifest
 
-There may be occasions where you only want to deploy the Nodegroup on an existing EKS Cluster and not deploy the cluster. Two possibilities are one, where you want to change one of the Nodegroup parameters, like instanceType and two, the build of the cluster was interrupted by loss of Internet or VPN during the running of the eksctl cluster create command resulting in the cluster being deployed, but not the Nodegroup.
+There may be occasions where you only want to deploy the Nodegroup on an existing EKS Cluster and not deploy the cluster. Two possibilities are one, where you want to change one of the Nodegroup parameters, like instanceType and two, the build of the cluster was interrupted by loss of Internet or VPN during the running of the `eksctl cluster create` command resulting in the cluster being deployed, but not the Nodegroup.
 
-In the first case, to change one of the Nodegroup parameters, you first have to remove the existing Nodegroup. To do this you first need to get the Nodegroup name. This can be done with the eksctl get nodegroup --cluster <CLUSTER NAME> command. For example, in our case, the following commands will delete the Nodegroup:
+In the first case, to change one of the Nodegroup parameters, you first have to remove the existing Nodegroup. To do this you first need to get the Nodegroup name. This can be done with the `eksctl get nodegroup --cluster <CLUSTER NAME>` command. For example, in our case, the following commands will delete the Nodegroup:
 
 ```
 eksctl get nodegroup --cluster k8s-challenge
@@ -197,21 +197,21 @@ k8s-challenge   k8s-challenge-std-workers       ACTIVE  2024-03-13T18:55:05Z    
 eksctl delete nodegroup --cluster k8s-challenge --name standard-workers
 ```
 
-To only deploy the Nodegroup and not the EKS Cluster you need an eksctl manifest file similar to the one shown above and run the command: eksctl create nodegroup -f k8s-challenge-cluster.yaml
+To only deploy the Nodegroup and not the EKS Cluster you need an eksctl manifest file similar to the one shown above and run the command: `eksctl create nodegroup -f k8s-challenge-cluster.yaml`
 
-Notice the command this time is eksctl create nodegroup and not eksctl create cluster.
+Notice the command this time is `eksctl create nodegroup` and not `eksctl create cluster`.
 
 ### AWS CSI Storage Add-on
 
-The Amazon Elastic Block Store (Amazon EBS) Container Storage Interface (CSI) driver manages the lifecycle of Amazon EBS volumes as storage for the Kubernetes Volumes that you create. The Amazon EBS CSI driver makes Amazon EBS volumes for these types of Kubernetes volumes: generic ephemeral volumes and persistent volumes
+The Amazon Elastic Block Store (Amazon EBS) Container Storage Interface (CSI) driver manages the lifecycle of Amazon EBS volumes as storage for the Kubernetes Volumes that you create. The Amazon EBS CSI driver makes Amazon EBS volumes for these types of Kubernetes volumes: *generic ephemeral volumes and persistent volumes*
 
-***Install the CSI Storage add-on
+***Install the CSI Storage add-on***
 
 ### AWS CNI Network Add-on
 
 ### AWS Load Balancer Controller Add-on
 
-The AWS Load Balancer Controller requires subnets with specific tags. ***Read this document for information on the subnet tags
+The AWS Load Balancer Controller requires subnets with specific tags. ***Read this document for information on the subnet tags***
 
 Public subnets are used for internet-facing load balancers. These subnets must have the following tags:
 
@@ -229,9 +229,9 @@ In order to use an ALB, referred to as an Ingress in Kubernetes, you must first 
 
 Ensure you create the AmazonEKSLoadBalancerControllerRole IAM Role described in Steps 1 and 2.
 
-In step 5 of these instructions I recommend using the Helm 3 or later instructions, rather than the Kubernetes manifest instructions.
+In step 5 of these instructions I recommend using the **Helm 3 or later** instructions, rather than the **Kubernetes manifest** instructions.
 
-Here is the helm install command I used:
+Here is the `helm install` command I used:
 
 ```
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
@@ -251,7 +251,7 @@ aws-load-balancer-controller   2/2     2            2           3m23s
 
 If the READY column reports 0/2 for a long time then the AmazonEKSLoadBalancerControllerRole IAM Role is probably not setup correctly.
 
-To undo the helm install command use the following command:
+To undo the `helm install` command use the following command:
 
 ```
 helm uninstall aws-load-balancer-controller -n kube-system
