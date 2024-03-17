@@ -6,7 +6,7 @@ The purpose of the EKS Management Console (EMC) is to manage the EKS Cluster and
 
 Create IAM user with Programmatic access only and attach the AdministratorAccess policy. Copy the Access Key ID and Secret Access Key to be used when setting up the AWS CLI.
 
-### Install Required Software
+### Install Prerequisite Software
 
 [Install the AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
