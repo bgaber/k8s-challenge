@@ -8,7 +8,7 @@ Create IAM user with Programmatic access only and attach the AdministratorAccess
 
 ### Install Required Software
 
-<u>Install the AWS CLI version 2</u>
+*** Install the AWS CLI version 2
 
 ```
 $ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -22,7 +22,7 @@ Configure the AWS CLI using the Access Key ID and Secret Access Key.
 aws configure
 ```
 
-#### <u>Install kubectl</u>
+#### *** Install kubectl
 
 ```
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.29.0/2024-01-04/bin/linux/amd64/kubectl
@@ -31,7 +31,7 @@ sudo mv kubectl /usr/local/bin
 kubectl version
 ```
 
-#### <u>Install eksctl</u>
+#### *** Install eksctl
 
 ```
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
@@ -39,7 +39,7 @@ sudo mv /tmp/eksctl /usr/local/bin
 eksctl version
 ```
 
-<u>Install helm</u> Helm is a Kubernetes deployment tool for automating creation, packaging, configuration, and deployment of applications and services to Kubernetes clusters.
+*** Install helm Helm is a Kubernetes deployment tool for automating creation, packaging, configuration, and deployment of applications and services to Kubernetes clusters.
 
 ```
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -205,13 +205,13 @@ Notice the command this time is eksctl create nodegroup and not eksctl create cl
 
 The Amazon Elastic Block Store (Amazon EBS) Container Storage Interface (CSI) driver manages the lifecycle of Amazon EBS volumes as storage for the Kubernetes Volumes that you create. The Amazon EBS CSI driver makes Amazon EBS volumes for these types of Kubernetes volumes: generic ephemeral volumes and persistent volumes
 
-<u>Install the CSI Storage add-on</u>
+*** Install the CSI Storage add-on
 
 ### AWS CNI Network Add-on
 
 ### AWS Load Balancer Controller Add-on
 
-The AWS Load Balancer Controller requires subnets with specific tags. <u>Read this document for information on the subnet tags</u>
+The AWS Load Balancer Controller requires subnets with specific tags. *** Read this document for information on the subnet tags
 
 Public subnets are used for internet-facing load balancers. These subnets must have the following tags:
 
