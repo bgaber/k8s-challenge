@@ -1,6 +1,6 @@
 ## Setup EKS Management Console
 
-The purpose of the EKS Management Console (EMC) is to manage the EKS Cluster and EKS worker nodes. The EMC is built on a small EC2 instance. I used a t3a.micro. Among many functions it is the EMC that creates, updates and deletes all Clusters and Node Groups. The EMC is created by installing the AWS CLI, kubectl, eksctl and helm software packages.
+The purpose of the EKS Management Console (EMC) is to manage the EKS Cluster and EKS worker nodes. The EMC is built on a small EC2 instance. For this project I used a t3a.micro. Among many functions it is the EMC that creates, updates and deletes all Clusters and Node Groups. The EMC is created by installing the AWS CLI, kubectl, eksctl and helm software packages.
 
 ### Create IAM User
 
