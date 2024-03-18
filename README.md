@@ -16,4 +16,5 @@ Containerization, using Docker, encapsulates your application and its environmen
 By leveraging Kubernetes and containerization a scalable, consistent, and resilient deployment strategy is embraced. This not only demonstrates technical acumen but aligns with modern DevOps practices.
 
 [Take on the Kubernetes challenge overview](https://cloudresumechallenge.dev/blog/take-on-the-kubernetes-resume-challenge-march-2024/)
+
 [The Kubernetes Resume Challenge Implementation Steps](https://cloudresumechallenge.dev/docs/extensions/kubernetes-challenge/)
