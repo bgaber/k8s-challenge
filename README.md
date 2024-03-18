@@ -3,9 +3,9 @@ Kubernetes Resume Challenge 2024
 
 The objective of this challenge was to similate the deployment an e-commerce website. For this project it was crucial to consider the challenges of modern web application deployment and how containerization and Kubernetes (K8s) offer compelling solutions:
 
-- Scalability: How can your application automatically adjust to fluctuating traffic?
-- Consistency: How do you ensure your application runs the same across all environments?
-- Availability: How can you update your application with zero downtime?
+- Scalability: How can application automatically adjust to fluctuating traffic?
+- Consistency: How to ensure application runs the same across all environments?
+- Availability: How to configure application with zero downtime?
 
 Containerization, using Docker, encapsulates your application and its environment, ensuring it runs consistently everywhere. Kubernetes, a container orchestration platform, automates deployment, scaling, and management, offering:
 
