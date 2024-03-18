@@ -51,7 +51,7 @@ helm version
 
 ## Create EKS Cluster
 
-There are many options for creating an EKS cluster using eksctl as shown in [this document](https://eksctl.io/usage/schema/). It can be created using a k8s manifest file or from the command line. From the CLI there are also many options as shown by running the `eksctl create cluster --help` command. I will just show two variations: one that creates a new VPC and required components (subnets, etc) and one that uses an existing VPC and subnets.
+There are many options for creating an EKS cluster using eksctl as shown in [this eksctl schema document](https://eksctl.io/usage/schema/). It can be created using a k8s manifest file or from the command line. From the CLI there are also many options as shown by running the `eksctl create cluster --help` command. I will just show two variations: one that creates a new VPC and required components (subnets, etc) and one that uses an existing VPC and subnets.
 
 ### Deploy Cluster To New VPC From CLI
 
