@@ -11,6 +11,16 @@ spec:
     name: ecom-db
     ports:
     - containerPort: 3306
+    readinessProbe:
+      tcpSocket:
+        port: 3306
+      initialDelaySeconds: 5
+      periodSeconds: 5
+    livenessProbe:
+      tcpSocket:
+        port: 3306
+      initialDelaySeconds: 10
+      periodSeconds: 5
     env:
     - name: MYSQL_ROOT_PASSWORD
       valueFrom:
