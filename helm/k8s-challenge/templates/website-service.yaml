@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.websiteDeployment.service.serviceName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+  - port: {{ .Values.websiteDeployment.port }}
+    protocol: TCP
+    targetPort: {{ .Values.websiteDeployment.port }}
+  selector:
+    tier: {{ .Values.websiteDeployment.tierLabel }}
+  type: LoadBalancer

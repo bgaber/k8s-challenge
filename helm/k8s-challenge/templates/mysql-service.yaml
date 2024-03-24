@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.databasePod.serviceName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+  - port: {{ .Values.databasePod.port }}
+    protocol: TCP
+    targetPort: {{ .Values.databasePod.port }}
+  selector:
+    tier: {{ .Values.databasePod.tierLabel }}

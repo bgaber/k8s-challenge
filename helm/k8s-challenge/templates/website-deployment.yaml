@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.websiteDeployment.deploymentName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.websiteDeployment.replicas }}
+  selector:
+    matchLabels:
+      tier: {{ .Values.websiteDeployment.tierLabel }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.websiteDeployment.appLabel }}
+        tier: {{ .Values.websiteDeployment.tierLabel }}
+    spec:
+      containers:
+      - image: {{ .Values.websiteDeployment.image }}
+        name: {{ .Values.websiteDeployment.containerName }}
+        ports:
+        - containerPort: {{ .Values.websiteDeployment.port }}
+        readinessProbe:
+          httpGet:
+            path: /index.php
+            port: {{ .Values.websiteDeployment.port }}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /index.php
+            port: {{ .Values.websiteDeployment.port }}
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        env:
+        - name: DB_HOST
+          value: "mysql-service"
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: mariadb-config
+              key: mysql_user
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-secret
+              key: mysql_password
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: mariadb-config
+              key: mysql_db
+        - name: FEATURE_DARK_MODE
+          valueFrom:
+            configMapKeyRef:
+              name: feature-toggle
+              key: FEATURE_DARK_MODE
+              
