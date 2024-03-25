@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
   - image: {{ .Values.databasePod.image }}
-    name: {{ .Values.databasePod.fullname }}
+    name: {{ .Values.databasePod.podName }}
     ports:
     - containerPort: {{ .Values.databasePod.port }}
     readinessProbe:
