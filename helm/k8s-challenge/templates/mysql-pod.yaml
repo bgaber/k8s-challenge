@@ -61,6 +61,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: initdb
+  namespace: {{ .Values.namespace }}
 data:
   initdb.sql: |-
     USE ecomdb;
