@@ -23,5 +23,5 @@ databasePod:
   serviceName: mysql-service
 
 storage:
-  scName: aws-ssd-storage
+  scName: aws-ssd-class
   pvcName: mariadb-pv-claim
