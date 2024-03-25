@@ -5,5 +5,5 @@ APP VERSION: {{ .Chart.AppVersion }}
 ** Please be patient while the chart is being deployed **
 
 1. Get the Kubernetes Challenge Application Load Balancer URL by running:
-export LB_HOSTNAME=$(kubectl get svc {{ .Values.websiteDeployment.serviceName }} -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+export LB_HOSTNAME=$(kubectl -n {{ .Values.namespace }} get svc {{ .Values.websiteDeployment.serviceName }} -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')
 echo http://$LB_HOSTNAME
