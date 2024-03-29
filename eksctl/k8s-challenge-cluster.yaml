@@ -12,7 +12,7 @@ managedNodeGroups:
       ebs: true
       awsLoadBalancerController: true
       cloudWatch: true
-  instanceType: t3a.xlarge
+  instanceType: m5.xlarge
   labels:
     alpha.eksctl.io/cluster-name: k8s-challenge
     alpha.eksctl.io/nodegroup-name: standard-workers
